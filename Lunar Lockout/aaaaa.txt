@@ -1,0 +1,80 @@
+;
+;  Copyright 2014 Sasanka Nagavalli
+;
+;  This program is free software: you can redistribute it and/or modify
+;  it under the terms of the GNU General Public License as published by
+;  the Free Software Foundation, either version 3 of the License, or
+;  (at your option) any later version.
+;
+;  This program is distributed in the hope that it will be useful,
+;  but WITHOUT ANY WARRANTY; without even the implied warranty of
+;  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+;  GNU General Public License for more details.
+;
+;  You should have received a copy of the GNU General Public License
+;  along with this program. If not, see <http://www.gnu.org/licenses/>.
+;
+
+(define (domain lunarlockout)
+  (:requirements :strips :equality :typing :adl)
+  (:types spacecraft gindex)
+  (:predicates (on ?i - spacecraft ?x - gindex ?y - gindex)
+               (less-of ?a - gindex ?b - gindex)
+               (one-less-of ?a - gindex ?b - gindex))
+               
+  (:action move-left
+   :parameters (?i - spacecraft ?x - gindex ?y - gindex 
+                ?j - spacecraft ?p - gindex ?r - gindex)
+   :precondition 
+     (and (on ?i ?x ?y) 
+          (on ?j ?p ?y)
+          (one-less-of ?p ?r) 
+          (less-of ?r ?x)
+          (forall (?k - spacecraft ?q - gindex) 
+              (not (and (less-of ?p ?q) (less-of ?q ?x) (on ?k ?q ?y)))))
+   :effect
+     (and (not (on ?i ?x ?y))
+          (on ?i ?r ?y)))
+
+  (:action move-right
+   :parameters (?i - spacecraft ?x - gindex ?y - gindex 
+                ?j - spacecraft ?p - gindex ?r - gindex)
+   :precondition 
+     (and (on ?i ?x ?y) 
+          (on ?j ?p ?y)
+          (one-less-of ?r ?p) 
+          (less-of ?x ?r)
+          (forall (?k - spacecraft ?q - gindex) 
+              (not (and (less-of ?x ?q) (less-of ?q ?p) (on ?k ?q ?y)))))
+   :effect
+     (and (not (on ?i ?x ?y))
+          (on ?i ?r ?y)))
+
+  (:action move-down
+   :parameters (?i - spacecraft ?x - gindex ?y - gindex 
+                ?j - spacecraft ?p - gindex ?r - gindex)
+   :precondition 
+     (and (on ?i ?x ?y) 
+          (on ?j ?x ?p)
+          (one-less-of ?p ?r) 
+          (less-of ?r ?y)
+          (forall (?k - spacecraft ?q - gindex) 
+              (not (and (less-of ?p ?q) (less-of ?q ?y) (on ?k ?x ?q)))))
+   :effect
+     (and (not (on ?i ?x ?y))
+          (on ?i ?x ?r)))
+            
+  (:action move-up
+   :parameters (?i - spacecraft ?x - gindex ?y - gindex 
+                ?j - spacecraft ?p - gindex ?r - gindex)
+   :precondition 
+     (and (on ?i ?x ?y) 
+          (on ?j ?x ?p)
+          (one-less-of ?r ?p) 
+          (less-of ?y ?r)
+          (forall (?k - spacecraft ?q - gindex) 
+              (not (and (less-of ?y ?q) (less-of ?q ?p) (on ?k ?x ?q)))))
+   :effect
+     (and (not (on ?i ?x ?y))
+          (on ?i ?x ?r)))
+)

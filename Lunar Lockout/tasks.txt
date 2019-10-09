@@ -1,0 +1,19 @@
+20 - a) Define two very different ways to represent the lunar lockout world (objects, states, actions,
+domain axioms). Ensure there is a big difference in the set of possible states between both
+representations.
+
+objects: spapaceship
+states: x, y
+actions: up, down, right, left
+
+20 - b) Explain the number of possible states for both representations that you came up with. Do they
+also differ in the number of feasible states? Explain why each representation would be preferable
+to the other.
+
+60 - c) Write the PDDL files required for a planner of your choice to solve this problem (Hint: a statespace search is likely the most simple). We should be able to run your code with something like
+the following command: /lunar-lockout <domain.pddl> <problem.pddl>. The <domain .pddl>
+should define the lunar lockout world actions and predicates. If you wish, you can hardcode the
+domain representation into your suggested planner but be sure to state this in your README.
+The <problem .pddl> contains the objects, init state, and goal state. The output of your planner
+should be a sequence of actions that solves the given puzzles. Explain how we should interpret
+the output. It is OK to use a more compact representation.
