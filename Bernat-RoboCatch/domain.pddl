@@ -14,8 +14,8 @@
     )
     (:functions
         ;(total-cost) - number
-        (t-robot ?r - robot)
-        (t-ghost ?g - ghost ?p - pos)
+        (t-robot ?r - robot) - number
+        (t-ghost ?g - ghost ?p - pos) - number
     )
     ;define actions here
     (:action move-right
