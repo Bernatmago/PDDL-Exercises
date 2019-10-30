@@ -8,7 +8,7 @@
     (:predicates (robot-on ?r - robot ?p - pos)
                  (up ?p0 -pos ?p1 - pos)
                  (left ?p0 -pos ?p1 - pos)
-                 (ghost-on ?p - pos)
+                 (ghost-on ?g - ghost ?p - pos)
     )
     (:functions
         ;(total-cost) - number
