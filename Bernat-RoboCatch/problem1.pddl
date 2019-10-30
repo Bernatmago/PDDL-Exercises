@@ -1,6 +1,7 @@
 (define (problem robot) (:domain room)
 (:objects p0 p1 p2 p3 p4 p5 p6 p7 p8 p9 p10 p11 p12 p13 p14 p15 - pos
           r - robot
+          g - ghost
 )
 ;Cells distribution
 ;p0 p1 p2 p3
@@ -18,8 +19,9 @@
        (left p12 p13)(left p13 p14)(left p14 p15)
        
        (robot-on r p0)
+       (ghost-on g p15)
        (=(t-robot r) 0)       
 )
 
-(:goal (robot-on r p14)    
+(:goal (and(robot-on r p15)(ghost-on g p15))
 ))
