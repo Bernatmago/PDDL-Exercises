@@ -18,7 +18,7 @@
        (left p4 p5)(left p5 p6)(left p6 p7)
        (left p8 p9)(left p9 p10)(left p10 p11)
        (left p12 p13)(left p13 p14)(left p14 p15)
-       
+       (=(total-cost) 0)
        (robot-on r p0)
        (=(t-robot r) 0)
        (ghost-on g p15)
@@ -29,5 +29,5 @@
        (=(t-ghost g p10) 2)
        (ghost-last g p10)
 )
-(:goal (done go)
-))
+(:goal (done go))
+(:metric minimize (total-cost)))

@@ -2,7 +2,7 @@
 
 (define (domain room)
 
-    (:requirements :typing :fluents :disjunctive-preconditions)
+    (:requirements :typing :fluents :disjunctive-preconditions :action-costs)
 
     (:types robot ghost pos goal)
     (:predicates (robot-on ?r - robot ?p - pos)
@@ -13,7 +13,7 @@
                  (done ?go - goal)
     )
     (:functions
-        ;(total-cost) - number
+        (total-cost) - number
         (t-robot ?r - robot) - number
         (t-ghost ?g - ghost ?p - pos) - number
     )
@@ -22,35 +22,35 @@
         :parameters (?r - robot ?p0 - pos ?p1 - pos)
         :precondition (and (robot-on ?r ?p0) (left ?p0 ?p1))
         :effect (and (robot-on ?r ?p1) (not(robot-on ?r ?p0))
-                     ;(increase (total-cost) 2)
+                     (increase (total-cost) 1)
                      (increase (t-robot ?r) 1))
     )
     (:action move-left
         :parameters (?r - robot ?p0 - pos ?p1 - pos)
         :precondition (and (robot-on ?r ?p0) (left ?p1 ?p0))
         :effect (and (robot-on ?r ?p1) (not(robot-on ?r ?p0))
-                     ;(increase (total-cost) 2)
+                     (increase (total-cost) 1)
                      (increase (t-robot ?r) 1))
     )  
     (:action move-down
         :parameters (?r - robot ?p0 - pos ?p1 - pos)
         :precondition (and (robot-on ?r ?p0) (up ?p0 ?p1))
         :effect (and (robot-on ?r ?p1) (not(robot-on ?r ?p0))
-                     ;(increase (total-cost) 2)
+                     (increase (total-cost) 1)
                      (increase (t-robot ?r) 1))
     )
     (:action move-up
         :parameters (?r - robot ?p0 - pos ?p1 - pos)
         :precondition (and (robot-on ?r ?p0) (up ?p1 ?p0))
         :effect (and (robot-on ?r ?p1) (not(robot-on ?r ?p0))
-                     ;(increase (total-cost) 2)
+                     (increase (total-cost) 1)
                      (increase (t-robot ?r) 1))
     )
     (:action wait
         :parameters (?r - robot ?p0 - pos)
         :precondition (robot-on ?r ?p0)
         :effect (and (not(robot-on ?r ?p0))(robot-on ?r ?p0)
-                     ;(increase (total-cost) 2)
+                     (increase (total-cost) 1)
                      (increase (t-robot ?r) 1))
     )
     (:action found
