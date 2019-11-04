@@ -2,7 +2,6 @@
 (:objects p0 p1 p2 p3 p4 p5 p6 p7 p8 p9 p10 p11 p12 p13 p14 p15 - pos
           r - robot
           g - ghost
-          go - goal
 )
 ;Cells distribution
 ;p0 p1 p2 p3
@@ -29,5 +28,5 @@
        (=(t-ghost g p10) 2)
        (ghost-last g p10)
 )
-(:goal (done go))
+(:goal (done r))
 (:metric minimize (total-cost)))

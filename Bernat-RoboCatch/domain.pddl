@@ -10,7 +10,7 @@
                  (left ?p0 -pos ?p1 - pos)
                  (ghost-on ?g - ghost ?p - pos)
                  (ghost-last ?g - ghost ?p - pos)
-                 (done ?go - goal)
+                 (done ?r - robot)
     )
     (:functions
         (total-cost) - number
@@ -53,12 +53,12 @@
                      (increase (total-cost) 1)
                      (increase (t-robot ?r) 1))
     )
-    (:action found
-        :parameters (?r - robot ?p0 - pos ?g - ghost ?go - goal)
+    (:action find
+        :parameters (?r - robot ?p0 - pos ?g - ghost)
         :precondition (or(and (robot-on ?r ?p0)(ghost-on ?g ?p0)
                               (=(t-robot ?r)(t-ghost ?g ?p0)))
                          (and (robot-on ?r ?p0)(ghost-last ?g ?p0)
                               (>=(t-robot ?r)(t-ghost ?g ?p0)))                      )
-        :effect (done ?go)
+        :effect (done ?r)
     )   
 )
